@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <!-- Header for html page -->
+    <head>
+        <link rel="stylesheet" type="text/css" href="index.css"/>
+        <title>Football Predictor</title>
+    </head>
+
+    <!-- Body of page which contains top header, container for buttons to sit inside of -->
+    <body>
+        <h1 class="header">Football Predictor</h1>
+        <div class="container">
+            <p1 style="font-size: 45px;">Select Two NFL Teams:</p1>
+            <div class="dropdown">
+                <!-- Select Element for dropdown team names -->
+                <select id="firstT" class="firstT">
+                    <option value="">Select Team</option>
+                </select>
+                <select id="secondT" class="secondT">
+                    <option value="">Select Team</option>
+                </select>
+            </div>
+            <button class="submit" onclick="getTeam();location.href='../Result/result.html';">Submit</button>
+        </div>
+
+        <!-- Javascript code to handle button event and input from user to hit api -->
+        <script src="index.js"></script>
+    </body>
+
+</html>
