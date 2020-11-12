@@ -10,7 +10,7 @@ This webapp is created in HTML, CSS and JS. User will select two NFL teams from 
 
 ### Python
 
-The Python file is an API created in Flask. It will receive a GET request with two teams selected by the user. It will then call a webscraper created to extract values of current team turnover differentials(More calculations to determing winner will come soon) and select team with higher value. It will then create a JSON object and send it as a response to the request made in JS.
+The Python file is an API created in Flask. It will receive a GET request with two teams selected by the user. It will then call a webscraper created to extract values of current team turnover differentials(More calculations to determine winner will come soon) and select team with higher value. It will then create a JSON object and send it as a response to the request made in JS.
 
 ## How to run
 
