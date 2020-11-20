@@ -54,7 +54,7 @@ def api_all():
 
     # Call the web scraper function and return stats for selected team
     result = get_team_stats(team1, team2)
-
+    
     # Convert into a json object after getting correct key again
     result = list(teams.keys())[list(teams.values()).index(result)]
     winner = {'result': result}

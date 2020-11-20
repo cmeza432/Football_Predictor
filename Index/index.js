@@ -55,6 +55,21 @@ function show() {
     element2 = populate(element2);
 }
 
+// Function to upade the web page once value is submitted
+function changePage(result){
+    // Get the document id to replace with answer 
+    var msg = document.getElementById('drp');
+    var head = document.getElementById('header');
+    var button = document.getElementById('btn');
+
+    // Replace the document ID with result message
+    head.parentNode.removeChild(head);
+    button.parentNode.removeChild(button);
+    msg.innerHTML = '<p1 style="font-size: 45px;" id="header">Result:</p1><br><br>'
+     + '<p2 style="color: red;">' + result + '</p2>'
+     + '<br><br><button class="submit" onclick="history.go(0);">Try Again</button>';
+}
+
 // Function will use AJAX to use a Get Request
 function getWinner(team1, team2) {
     // Send info to python API url 
@@ -63,30 +78,29 @@ function getWinner(team1, team2) {
     const url = "http://127.0.0.1:5000/api/v1/winner?team1=" + team1 + "&team2=" + team2;
     Http.onreadystatechange=function(){
         if (Http.readyState==4 && Http.status==200){
-          const obj = JSON.parse(Http.responseText);
-          // Save Data onto local storage
-          localStorage.setItem("Result", obj.result);
+          var obj = JSON.parse(Http.responseText);
+          changePage(obj.result);
         }
     }
     Http.open("GET", url);
-    Http.send(null);
+    Http.send();
 }
 
 function getTeam() {
     // Get the selected value from firstT and secondT element to show
     var team1 = document.getElementById('firstT').value;
     var team2 = document.getElementById('secondT').value;
-
+    
     // Check if same teams given
-    if(team1 == team2){
-        localStorage.setItem("Result", team1);
-    }
     // Check if either team is empty
-    else if(team1 == null || team2 == null){
-        localStorage.setItem("Result", "Error, not enough teams given!");
+    if(team1 == "" || team2 == ""){
+        changePage("Error, not enough teams given!");
+    }
+    else if(team1 == team2){
+        changePage(team1);
     }
     else {
         // Call the API to get result of team
-        let result = getWinner(team1, team2);
+        getWinner(team1, team2);
     }
 }
