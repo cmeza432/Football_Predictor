@@ -1,45 +1,18 @@
 import flask
 from flask import request, jsonify
-from webscrape_example import get_team_stats
+from webscrape_turnover import get_teams_turnover
+from webscrape_point_diff import get_teams_point_diff
+from webscrape_OYG import get_teams_OYG
+from teams import teams
 
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
 
-# Values of team with names to pass to scraper function in correct format
-teams = {
-    'Arizona Cardinals': 'Arizona',
-    'Atlanta Falcons': 'Atlanta',
-    'Buffalo Bills': 'Buffalo',
-    'Baltimore Ravens': 'Baltimore',
-     'Carolina Panthers': 'Carolina',
-     'Cincinnati Bengals': 'Cincinnati',
-     'Cleveland Browns': 'Cleveland',
-     'Chicago Bears': 'Chicago',
-     'Dallas Cowboys': 'Dallas',
-     'Denver Broncos': 'Denver',
-     'Detroit Lions': 'Detroit',
-     'Green Bay Packers': 'Green Bay',
-     'Houston Texans': 'Houston',
-     'Indianapolis Colts': 'Indianapolis',
-     'Kansas City Chiefs': 'Kansas City',
-     'Los Angeles Chargers' : 'Los Angeles Chargers',
-     'Los Angeles Rams': 'Los Angeles Rams',
-     'Jacksonville Jaguars': 'Jacksonville',
-     'Miami Dolphins': 'Miami',
-     'Minnesota Vikings': 'Minnesota',
-     'New England Patrios': 'New England',
-     'New Orleans Saints': 'New Orleans',
-     'New York Giants': 'New York Giants',
-     'New York Jets': 'New York Jets',
-     'Las Vegas Raiders': 'Las Vegas',
-     'Philadelphia Eagles': 'Philadelphia',
-     'San Fransisco 49ers': 'San Fransisco',
-     'Seattle Seahawks': 'Seattle',
-     'Pittsburgh Steelers': 'Pittsburgh',
-     'Tampa Bay Buccaneers': 'Tampa Bay',
-     'Tennessee Titans': 'Tennessee',
-     'Washington Football Team': 'Washington'
-}
+def get_winner(tracker, team1, team2):
+    if(tracker[team1] > tracker[team2]):
+        return team1
+    else:
+        return team2
 
 # A route to return the predicted winner of both teams given
 @app.route('/api/v1/winner', methods=['GET'])
@@ -52,9 +25,19 @@ def api_all():
     team1 = teams[team1]
     team2 = teams[team2]
 
+    # Create dictionary of both teams to keep track of values
+    tracker = {
+        team1: 0,
+        team2: 0
+    }
+
     # Call the web scraper function and return stats for selected team
-    result = get_team_stats(team1, team2)
-    
+    tracker[get_teams_turnover(team1, team2)] += 1
+    tracker[get_teams_point_diff(team1, team2)] += 1
+    tracker[get_teams_OYG(team1, team2)] += 1
+    # Check to see who is the winner with better stats
+    result = get_winner(tracker, team1, team2)
+
     # Convert into a json object after getting correct key again
     result = list(teams.keys())[list(teams.values()).index(result)]
     winner = {'result': result}
