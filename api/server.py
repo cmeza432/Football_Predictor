@@ -8,6 +8,7 @@ from teams import teams
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
 
+# Will return the winner with the better team stats
 def get_winner(tracker, team1, team2):
     if(tracker[team1] > tracker[team2]):
         return team1
@@ -35,6 +36,7 @@ def api_all():
     tracker[get_teams_turnover(team1, team2)] += 1
     tracker[get_teams_point_diff(team1, team2)] += 1
     tracker[get_teams_OYG(team1, team2)] += 1
+
     # Check to see who is the winner with better stats
     result = get_winner(tracker, team1, team2)
 
@@ -45,4 +47,5 @@ def api_all():
     # Return as a json package
     return jsonify(winner)
 
+# Run the Server App API
 app.run()
