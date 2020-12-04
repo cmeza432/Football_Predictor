@@ -5,6 +5,11 @@ body {
   margin-top: -30px;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 /* Top banner properties */
 .header {
   text-align: center;
@@ -12,8 +17,18 @@ body {
   color: white;
   background-color: black;
   width: 100%;
+  height: 15%;
   padding-bottom: 40px;
   padding-top: 40px;
+}
+
+/* Background styler for nfl wallpaper */
+.background {
+  background-image: url("/Images/nfl-background.jpg");
+  height: 87%;
+  background-position: center;
+  margin-top: -130px;
+  display: flex;
 }
 
 /* Container for button properties */

@@ -9,18 +9,20 @@
     <!-- Body of page which contains top header, container for buttons to sit inside of -->
     <body>
         <h1 class="header">Football Predictor</h1>
-        <div class="container">
-            <p1 style="font-size: 45px;" id='header'>Select Two NFL Teams:</p1>
-            <div class="dropdown" id="drp">
-                <!-- Select Element for dropdown team names -->
-                <select id="firstT" class="firstT">
-                    <option value="">Select Team</option>
-                </select>
-                <select id="secondT" class="secondT">
-                    <option value="">Select Team</option>
-                </select>
+        <div class="background">
+            <div class="container">
+                <p1 style="font-size: 45px;" id='header'>Select Two NFL Teams:</p1>
+                <div class="dropdown" id="drp">
+                    <!-- Select Element for dropdown team names -->
+                    <select id="firstT" class="firstT">
+                        <option value="">Select Team</option>
+                    </select>
+                    <select id="secondT" class="secondT">
+                        <option value="">Select Team</option>
+                    </select>
+                </div>
+                <button class="submit" id='btn' onclick="getTeam();">Submit</button>
             </div>
-            <button class="submit" id='btn' onclick="getTeam();">Submit</button>
         </div>
 
         <!-- Javascript code to handle button event and input from user to hit api -->
