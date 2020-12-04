@@ -2,7 +2,7 @@
 body {
   background-color: white;
   margin: 0;
-  margin-top: -30px;
+  margin-top: -2%;
 }
 
 html,
@@ -13,11 +13,11 @@ body {
 /* Top banner properties */
 .header {
   text-align: center;
-  font-size: 45px;
+  font-size: 55px;
   color: white;
-  background-color: black;
+  background-color: darkslateblue;
   width: 100%;
-  height: 15%;
+  height: 16%;
   padding-bottom: 40px;
   padding-top: 40px;
 }
@@ -25,7 +25,7 @@ body {
 /* Background styler for nfl wallpaper */
 .background {
   background-image: url("/Images/nfl-background.jpg");
-  height: 87%;
+  height: 85%;
   background-position: center;
   margin-top: -130px;
   display: flex;
@@ -36,7 +36,7 @@ body {
   height: 400px;
   width: 700px;
   margin: auto;
-  margin-top: 12%;
+  margin-top: 11%;
   border: 3px solid black;
   background-color: whitesmoke;
   text-align: center;
